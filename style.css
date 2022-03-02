@@ -4,8 +4,12 @@
     padding: 0;
 }
 
+body {
+    background-color: rgb(223, 245, 220);
+}
+
 .top {
-    height: 15vh;
+    height: 20vh;
     background-color: rgb(111, 204, 204);
     display: flex;
     justify-content: center;
@@ -19,10 +23,23 @@
 .bottom {
     height: 85vh;
     background-color: rgb(223, 245, 220);
+    position: relative;
+    
 }
 
+.bottom > div:first-of-type {
+    margin-top: 20px;
+    padding-left: 30px;
+    
+}
+
+.visible {
+    visibility: visible;
+}
+
+
 button {
-    margin-bottom: -30px;
+    margin: 0 0 -30px 10px;
     border: solid 2px black;
     border-radius: 10px;
     padding: 8px;
@@ -30,3 +47,57 @@ button {
     width: 15%;
 }
 
+.pop-up {
+    background-color: white;
+    width: 30%;
+    height: 45%;
+    border: solid 2px black;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding-left: 30px;
+    position: absolute;
+    left: 40vw;
+    visibility: visible;
+}
+
+
+
+legend {
+    font-size: 2rem;
+}
+
+form {
+    position: relative;
+}
+
+span {
+    position: absolute;
+    right: 10px;
+    top: -5px;
+}
+
+input {
+    width: 80%;
+    padding: 7px;
+}
+
+input, label, legend {
+    margin: 10px;
+}
+
+label {
+    margin-top: 20px;
+}
+
+form > button {
+    font-size: 1rem;
+    width: 80%;
+}
+
+.select {
+    margin: 10px 0 20px 0;
+}
+
+ul {
+    margin-top: 20px;
+}

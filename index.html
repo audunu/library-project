@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,14 +8,44 @@
     <link rel="stylesheet" href="style.css">
     <title>Library</title>
 </head>
+
 <body>
-    
+
     <div class="top">Library Project
         <button>+ New book</button>
     </div>
-    <div class="bottom"></div>
+    <div class="bottom">
 
+        <div class="pop-up">
+            <form id='form' action='app.js'>
 
+                <legend>New Book</legend>
+                <span class="close">&times;</span>
+                <div id='text-input'>
+                    <p><input type='text' id='title' name='title' placeholder='Title'></p>
+                    <p><input type='text' id='author' name='author' placeholder='Author'></p>
+                    <p><input type='text' id='pages' name='pages' placeholder='Pages'></p>
+                </div>
+                <div class="select">
+                    <label for="read">Read the book?</label>
+                    <select name="read" id="read">
+                        <option value="Yes">Read</option>
+                        <option value="No">Not read</option>
+                    </select>
+                </div>
+                <button type='submit' form='form' id='addBtn'>Add</button>
+            </form>
+        </div>
+
+        <div>
+            <ul class="book-list">
+
+            </ul>
+
+        </div>
+
+    </div>
     <script src="app.js"></script>
 </body>
+
 </html>
