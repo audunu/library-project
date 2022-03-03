@@ -67,7 +67,7 @@ button {
 .card {
     background-color: beige;
     border: solid 2px black;
-    height: 200px;
+    height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -120,4 +120,11 @@ ul {
 
 .close {
     cursor: pointer;
+}
+
+.delete {
+    width: 100%;
+    margin-right: 10px;
+    margin-bottom: -16px;
+    border: none;
 }

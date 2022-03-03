@@ -4,6 +4,7 @@ const cardContainer = document.querySelector('.grid-container');
 const addBtn = document.querySelector('button[type=submit]');
 const newBookBtn = document.querySelector('button');
 const closeBtn = document.querySelector('.close');
+
 const titleInput = document.querySelector('#title');
 const authorInput = document.querySelector('#author');
 const pagesInput = document.querySelector('#pages');
@@ -19,10 +20,11 @@ class Book {
     }
     info() {
         return `
-                <p>${this.title}</p>
-                <p>${this.author}</p>
-                <p>${this.pages}</p>
-                <p>${this.read}</p>
+                <div>${this.title}</div>
+                <div>${this.author}</div>
+                <div>${this.pages}</div>
+                <div>${this.read}</div>
+                <button class='delete'>Delete</button>
             `;
     }
 }
@@ -45,33 +47,48 @@ closeBtn.addEventListener('click', (e) => {
 
 
 
+
+
+function displayLibrary() {
+    cardContainer.innerHTML = '';
+
+    myLibrary.forEach((element, index) => {
+        if (element.title === '') {
+            
+        }
+        else {
+            const card = document.createElement('div');
+            card.innerHTML = element.info();
+            const deleteBtn = card.querySelector('button');
+            deleteBtn.setAttribute('data-index', index);
+            card.classList.add('card');
+            cardContainer.appendChild(card);
+        }
+    })
+
+    const deleteBtns = document.querySelectorAll('.delete');
+    deleteBtns.forEach(element => {
+        element.addEventListener('click', (e) => {
+            e.preventDefault();
+            const index = element.getAttribute('data-index');
+            myLibrary.splice(index, 1);
+            addBookToLibrary();
+        })
+    })
+
+}
+
+
 function addBookToLibrary() {
     const newBook = new Book(titleInput.value, authorInput.value, pagesInput.value, readInput.value);
     myLibrary.push(newBook);
-    
-    myLibrary.forEach(element => {
-        const card = document.createElement('div');
-        card.innerHTML = element.info();
-        card.classList.add('card');
-        cardContainer.appendChild(card);
-    })
+
+    displayLibrary();
 
     // empty input fields
-
     titleInput.value = '';
     authorInput.value = '';
     pagesInput.value = '';
     readInput.value = 'Yes';
-   
 }
 
-
-
-
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 'not read');
-const exampleBook = new Book('Title', 'Person', 290, 'read');
-
-
-
-
-console.log(theHobbit.info());
