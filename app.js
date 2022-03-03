@@ -2,6 +2,8 @@ let myLibrary = [];
 
 const bookListElement = document.querySelector('.book-list');
 const addBtn = document.querySelector('button[type=submit]');
+const newBookBtn = document.querySelector('button');
+const closeBtn = document.querySelector('.close');
 const titleInput = document.querySelector('#title');
 const authorInput = document.querySelector('#author');
 const pagesInput = document.querySelector('#pages');
@@ -26,6 +28,15 @@ addBtn.addEventListener('click', (e) => {
     addBookToLibrary();
 })
 
+newBookBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    popUp.style.visibility = 'visible';
+})
+
+closeBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    popUp.style.visibility = 'hidden';
+})
 
 
 
@@ -39,7 +50,12 @@ function addBookToLibrary() {
         bookListElement.appendChild(listElement);
     })
 
+    // empty input fields
 
+    titleInput.value = '';
+    authorInput.value = '';
+    pagesInput.value = '';
+    readInput.value = 'Yes';
    
 }
 
