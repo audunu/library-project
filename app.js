@@ -1,6 +1,6 @@
 let myLibrary = [];
 
-const bookListElement = document.querySelector('.book-list');
+const cardContainer = document.querySelector('.grid-container');
 const addBtn = document.querySelector('button[type=submit]');
 const newBookBtn = document.querySelector('button');
 const closeBtn = document.querySelector('.close');
@@ -18,7 +18,12 @@ class Book {
         this.read = read;
     }
     info() {
-        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
+        return `
+                <p>${this.title}</p>
+                <p>${this.author}</p>
+                <p>${this.pages}</p>
+                <p>${this.read}</p>
+            `;
     }
 }
 
@@ -45,9 +50,10 @@ function addBookToLibrary() {
     myLibrary.push(newBook);
     
     myLibrary.forEach(element => {
-        const listElement = document.createElement('li');
-        listElement.innerHTML = element.info();
-        bookListElement.appendChild(listElement);
+        const card = document.createElement('div');
+        card.innerHTML = element.info();
+        card.classList.add('card');
+        cardContainer.appendChild(card);
     })
 
     // empty input fields
