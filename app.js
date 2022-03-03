@@ -27,6 +27,14 @@ class Book {
                 <button class='delete'>Delete</button>
             `;
     }
+    changeReadStatus() {
+        if (this.read = 'Read') {
+            this.read = 'Not Read';
+        }
+        else {
+            this.read = 'Read';
+        }
+    }
 }
 
 addBtn.addEventListener('click', (e) => {
@@ -45,8 +53,18 @@ closeBtn.addEventListener('click', (e) => {
     popUp.style.visibility = 'hidden';
 })
 
+function addBookToLibrary() {
+    const newBook = new Book(titleInput.value, authorInput.value, pagesInput.value, readInput.value);
+    myLibrary.push(newBook);
 
+    displayLibrary();
 
+    // empty input fields
+    titleInput.value = '';
+    authorInput.value = '';
+    pagesInput.value = '';
+    readInput.value = 'Yes';
+}
 
 
 function displayLibrary() {
@@ -66,29 +84,19 @@ function displayLibrary() {
         }
     })
 
+    // const readBtns = document.querySelectorAll('.card > div:nth-child(4)');
+
+
     const deleteBtns = document.querySelectorAll('.delete');
     deleteBtns.forEach(element => {
         element.addEventListener('click', (e) => {
             e.preventDefault();
             const index = element.getAttribute('data-index');
             myLibrary.splice(index, 1);
-            addBookToLibrary();
+            displayLibrary();
         })
     })
 
 }
 
-
-function addBookToLibrary() {
-    const newBook = new Book(titleInput.value, authorInput.value, pagesInput.value, readInput.value);
-    myLibrary.push(newBook);
-
-    displayLibrary();
-
-    // empty input fields
-    titleInput.value = '';
-    authorInput.value = '';
-    pagesInput.value = '';
-    readInput.value = 'Yes';
-}
 
