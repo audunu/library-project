@@ -70,11 +70,9 @@ function addBookToLibrary() {
 function displayLibrary() {
     cardContainer.innerHTML = '';
 
+    // populate the library with all books in Mylibrary array
     myLibrary.forEach((element, index) => {
-        if (element.title === '') {
-
-        }
-        else {
+        if (element.title !== '') {
             const card = document.createElement('div');
             card.innerHTML = element.info();
             const deleteBtn = card.querySelector('button');
@@ -84,16 +82,11 @@ function displayLibrary() {
         }
     })
 
-    // const readBtns = document.querySelectorAll('.card > div:nth-child(4)');
+    // add functionality to Read status buttons to change read status 
     const cards = document.querySelectorAll('.card');
     cards.forEach((element, index) => {
-        let readBtn = element.querySelector('div:nth-child(4)');
-        readBtn.style.border = 'solid 2px black';
-        readBtn.style.borderRadius = '5px';
-        readBtn.style.width = '60%';
-        readBtn.style.textAlign = 'center';
-        readBtn.style.padding = '5px';
-        readBtn.style.cursor = 'pointer';
+        const readBtn = element.querySelector('div:nth-child(4)');
+        readBtn.classList.add('readBtn');
         readBtn.addEventListener('click', (e) => {
             e.preventDefault();
             myLibrary[index].changeReadStatus();
@@ -101,16 +94,15 @@ function displayLibrary() {
         })
     })
 
-
-
-const deleteBtns = document.querySelectorAll('.delete');
-deleteBtns.forEach(element => {
-    element.addEventListener('click', (e) => {
-        e.preventDefault();
-        const index = element.getAttribute('data-index');
-        myLibrary.splice(index, 1);
-        displayLibrary();
+    // add functionality to remove books from library 
+    const deleteBtns = document.querySelectorAll('.delete');
+    deleteBtns.forEach(element => {
+        element.addEventListener('click', (e) => {
+            e.preventDefault();
+            const index = element.getAttribute('data-index');
+            myLibrary.splice(index, 1);
+            displayLibrary();
+        })
     })
-})
 
 }
