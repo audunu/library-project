@@ -28,7 +28,7 @@ class Book {
             `;
     }
     changeReadStatus() {
-        if (this.read = 'Read') {
+        if (this.read === 'Read') {
             this.read = 'Not Read';
         }
         else {
@@ -72,7 +72,7 @@ function displayLibrary() {
 
     myLibrary.forEach((element, index) => {
         if (element.title === '') {
-            
+
         }
         else {
             const card = document.createElement('div');
@@ -85,18 +85,32 @@ function displayLibrary() {
     })
 
     // const readBtns = document.querySelectorAll('.card > div:nth-child(4)');
-
-
-    const deleteBtns = document.querySelectorAll('.delete');
-    deleteBtns.forEach(element => {
-        element.addEventListener('click', (e) => {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((element, index) => {
+        let readBtn = element.querySelector('div:nth-child(4)');
+        readBtn.style.border = 'solid 2px black';
+        readBtn.style.borderRadius = '5px';
+        readBtn.style.width = '60%';
+        readBtn.style.textAlign = 'center';
+        readBtn.style.padding = '5px';
+        readBtn.style.cursor = 'pointer';
+        readBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            const index = element.getAttribute('data-index');
-            myLibrary.splice(index, 1);
+            myLibrary[index].changeReadStatus();
             displayLibrary();
         })
     })
 
+
+
+const deleteBtns = document.querySelectorAll('.delete');
+deleteBtns.forEach(element => {
+    element.addEventListener('click', (e) => {
+        e.preventDefault();
+        const index = element.getAttribute('data-index');
+        myLibrary.splice(index, 1);
+        displayLibrary();
+    })
+})
+
 }
-
-
